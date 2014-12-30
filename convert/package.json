@@ -1,0 +1,16 @@
+{
+  "name": "convert",
+  "version": "0.0.1",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha --ui tdd ./lib/test/index.js"
+  },
+  "author": "Mikael Kohlmyr",
+  "license": "MIT",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "mocha": "^2.0.1",
+    "should": "^4.4.1"
+  }
+}
