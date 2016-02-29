@@ -1,0 +1,17 @@
+<html>
+<head>
+<script src="../dist/earhole.js"></script>
+</head>
+<body>
+    <h1>Execute event listener every third keystroke</h1>
+    <input type="text" id="example"/>
+    <script>
+    var example = document.getElementById("example");
+    $m.when($e.on(example, "keyup", function (guid, evt) {
+        document.body.appendChild(document.createElement("br"));
+        document.body.appendChild(document.createTextNode(evt.srcElement.value));
+    })).use($m.nth, 3);
+    </script>
+    <br/>
+</body>
+</html>

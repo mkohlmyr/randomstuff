@@ -1,0 +1,20 @@
+<html>
+<head>
+    <script src="../dist/earhole.js"></script>
+</head>
+<body>
+    <h1>Execute event listener if some custom condition is passed</h1>
+    <h2>E.g. input is hello</h2>
+    <input type="text" id="example"/>
+    <script>
+    var example = document.getElementById("example");
+    $m.when($e.on(example, "keyup", function (guid, evt) {
+        document.body.appendChild(document.createElement("br"));
+        document.body.appendChild(document.createTextNode(evt.srcElement.value));
+    })).use($m.filter, function (guid, evt) {
+        return evt.srcElement.value === "hello";
+    });
+    </script>
+    <br/>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<html>
+<head>
+    <script src="../dist/earhole.js"></script>
+</head>
+<body>
+    <h1>Execute event listener after a buffer period which resets with new events</h1>
+    <input type="text" id="example"/>
+    <script>
+    var example = document.getElementById("example");
+    $m.when($e.on(example, "keyup", function (guid, evt) {
+        document.body.appendChild(document.createElement("br"));
+        document.body.appendChild(document.createTextNode(evt.srcElement.value));
+    })).use($m.defer, 2000);
+    </script>
+    <br/>
+</body>
+</html>

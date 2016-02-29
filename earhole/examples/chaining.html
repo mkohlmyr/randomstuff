@@ -1,0 +1,22 @@
+<html>
+<head>
+    <script src="../dist/earhole.js"></script>
+</head>
+<body>
+    <h1>Chaining middleware</h1>
+    <h2>E.g. defer for 1000ms then check if input is an email address</h2>
+    <input type="text" id="example"/>
+    <script>
+    var example = document.getElementById("example");
+    $m.when($e.on(example, "keyup", function (guid, evt) {
+        document.body.appendChild(document.createElement("br"));
+        document.body.appendChild(document.createTextNode(evt.srcElement.value));
+    })).use($m.filter, function (guid, evt) {
+        var lastDot = evt.srcElement.value.lastIndexOf("."),
+            firstAt = evt.srcElement.value.indexOf("@");
+        return firstAt > -1 && lastDot > firstAt && evt.srcElement.value > lastDot + 2;
+    }).use($m.defer, 1000);
+    </script>
+    <br/>
+</body>
+</html>
