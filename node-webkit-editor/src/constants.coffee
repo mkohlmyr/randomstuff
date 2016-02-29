@@ -1,0 +1,5 @@
+
+module.exports = {
+    'TABS_LOAD', 'TABS_NEW', 'TABS_CLOSE', 'TABS_SWITCH', 'TABS_SAVE', 'TABS_OPEN'
+    'MENU_TABS', 'MENU_OPEN', 'MENU_INFO'
+}

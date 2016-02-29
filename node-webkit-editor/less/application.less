@@ -1,0 +1,153 @@
+@import "reset.less";
+@import "vars.less";
+@import "mixins.less";
+
+html, body,
+.fullscreen {
+    .fullscreen;
+}
+
+div.CodeMirror {
+    .fullscreen;
+    font-family: 'Ubuntu Mono', monospace, sans-serif;
+    border: 0px;
+
+    div.CodeMirror-lines {
+        div.CodeMirror-code {
+            line-height: 1.25em;
+        }
+    }
+}
+
+.menu-item() {
+    background-color: @trans-menu-item;
+    border-radius: 4px;
+    margin-bottom: 6px;
+    padding: 3px 6px;
+}
+
+.menu-link() {
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+ul.path, ul.tree, ul.files, ul.tabs {
+    li {
+        .menu-item;
+
+        a {
+            .menu-link;
+        }
+
+        &.file, &.folder {
+            .horizontal-items;
+        }
+    }
+}
+
+ul.path > li.folder  a.folderName {
+    color: @color-blue;
+}
+
+ul.tree > li.folder > a.folderName {
+    color: @color-green;
+}
+
+ul.files > li.file > a.fileName {
+    color: @color-red;
+}
+
+body {
+    background-color: @color-background;
+
+    > div.container {
+        div.menu.overlay {
+            .z-higher;
+            position: absolute;
+            background-color: @trans-overlay;
+            bottom: 0px;
+            right: 0px;
+            left: 0px;
+            top: 0px;
+
+            div.menu.wrapper {
+                margin: 0px auto;
+                margin-top: 12px;
+                width: 95%;
+
+                @media (min-width: 580px) {
+                    width: 551px;
+                }
+
+                div.menu.tabs, div.menu.save, div.menu.open {
+                    h1.menu.label {
+                        color: @color-light-grey;
+                        text-transform: uppercase;
+                        font-weight: bold;
+                        padding: 6px;
+                    }
+                }
+
+                div.menu.tabs {
+                    ul.tabs {
+                        li.tab {
+                            a.fileName {
+                                color: @color-green;
+                            }
+
+                            span.filePath {
+                                font-weight: bold;
+                                word-wrap: break-word;
+                                color: @color-light-grey;
+                                text-transform: lowercase;
+                            }
+
+                            &.active {
+                                background-color: @trans-tab-active;
+                            }
+                        }
+                    }
+                }
+
+                div.menu.save {
+                    form.save.fileName {
+                        .menu-item;
+
+                        display: block;
+
+                        input.save.fileName {
+                            font-size: 16px;
+                            font-weight: bold;
+                            outline: none;
+                            background: none;
+                            padding: 3px 0px;
+                            display: block;
+                            color: @color-light-grey;
+                            width: 100%;
+                            border: none;
+                        }
+                    }
+                }
+            }
+        }
+
+        div.editor.wrapper {
+            display: none;
+            &.active {
+                display: block;
+            }
+
+            div.editor.status {
+                .z-high;
+                position: fixed;
+                right:    24px;
+                top:      0px;
+                padding:  2px 5px;
+
+                font-smail: sans-serif;
+                font-size:  11px;
+            }
+        }
+    }
+}
