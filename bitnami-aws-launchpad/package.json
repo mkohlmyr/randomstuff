@@ -1,0 +1,46 @@
+{
+  "name": "bitnami-aws-launchpad",
+  "description": "Basic one-page web application for launching instances from bitnami AMIs.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Mikael Kohlmyr",
+    "email": "mikael@kohlmyr.com",
+    "url": "http://mkohlmyr.com/"
+  },
+  "tags": [
+    "aws",
+    "ami",
+    "bitnami"
+  ],
+  "scripts": {
+    "start": "gulp app",
+    "predeploy": "gulp less && gulp js"
+  },
+  "main": "./main.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kmyr/bitnami-aws-launchpad.git"
+  },
+  "dependencies" : {
+    "async":  "0.2.10",
+    "aws-sdk":  "2.0.x",
+    "connect":  "2.13.0",
+    "gulp":  "3.5.5",
+    "gulp-concat":  "2.1.7",
+    "gulp-less":  "1.2.1",
+    "gulp-uglify":  "0.2.1",
+    "gulp-if": "0.0.5",
+    "handlebars":  "2.0.x",
+    "ws": "0.4.31",
+    "request": "2.34.0",
+    "portfinder": "0.2.1",
+    "atob": "1.1.0",
+    "btoa": "1.1.1",
+    "expiring-lru-cache": "2.1.0"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=0.10"
+  }
+}
+

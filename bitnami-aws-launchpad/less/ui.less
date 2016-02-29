@@ -1,0 +1,140 @@
+/**
+ * Additional layout
+ * -----------------------
+ *
+ **/
+
+.column.header {
+  min-height: 64px;
+}
+
+/**
+ * User interface
+ * -----------------------
+ *
+ **/
+@dark: #656565;
+@light: #b0b0b0;
+@margin: 6px;
+
+.ui-page:not([data-page="introduction"]) {
+  display: none;
+}
+
+.ui-btn-text {
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  font-size: 13px;
+  color: @dark;
+
+  text-decoration: none;
+}
+
+.ui-transition {
+  transition: all 0.35s ease;
+}
+
+.ui-border {
+  border-color: @light;
+  border-style: solid;
+  border-width: 1px;
+
+  padding: 8px 14px;
+}
+
+.ui-btn {
+  display: block;
+
+  .ui-transition();
+  .ui-border();
+  .ui-btn-text();
+}
+
+.ui-btn:hover {
+  color: #ffffff;
+  border-color: @dark;
+  background: @dark;
+}
+
+.ui-btn-row {
+  margin-top: @margin;
+}
+
+.ui-row-wrapper-table {
+  display: table;
+  width: 100%;
+  margin-top: @margin;
+}
+
+.ui-table-cell {
+  display: table-cell;
+}
+
+.ui-input-wrapper-cell {
+  .ui-table-cell();
+  .ui-border();
+  .ui-transition();
+}
+
+.ui-ami-wrapper-cell {
+  .ui-table-cell();
+  .ui-border();
+  .ui-transition();
+  font-size: 0.75em;
+  max-height: 16px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.ui-input-wrapper-cell.small {
+  width: 75px;
+}
+
+.ui-btn.launch {
+  .ui-input-wrapper-cell.small();
+}
+
+.ui-input-wrapper-cell.inherit {
+  width: inherit;
+}
+
+.ui-input-wrapper-cell.auto {
+  width: auto;
+}
+
+.ui-input-wrapper-cell.focus {
+  border-color: @dark;
+}
+
+.ui-input-divider-cell {
+  width: @margin;
+
+  .ui-table-cell();
+}
+
+.ui-input {
+  background: inherit;
+  color: @dark;
+  width: 100%;
+  border: none;
+  outline: none;
+  margin: 0px;
+}
+
+.ui-input > option {
+  padding: 4px;
+}
+
+.ui-information-span {
+  .ui-btn-text();
+  display: block;
+  width: 100%;
+}
+
+.ui-textarea {
+  .ui-input();
+  min-height: 385px;
+  display: block;
+  padding: 0px;
+}

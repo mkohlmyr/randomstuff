@@ -1,0 +1,46 @@
+/**
+ * Primary grid
+ * -----------------------
+ *
+ **/
+.container           { position: relative; width: 762px; margin: 0px auto; padding: 0px; }
+
+.container .column   { float: left; margin-left: 10px; margin-right: 10px; }
+.column.first-inner  { margin-left: 0px; }
+.column.last-inner   { margin-right: 0px; }
+
+.full-width        { width: 742px; }
+
+
+/**
+ * Mobile in landscape mode
+ * ------------------------
+ *
+ **/
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  .container         { width: 474px; }
+  .container .column { float: none; }
+
+  .full-width { width: 454px; }
+}
+
+
+/**
+ * Mobile in portrait mode
+ * -----------------------
+ *
+ **/
+@media only screen and (max-width: 479px) {
+  .container         { width: 314px; }
+  .container .column { float: none }
+
+  .full-width { width: 294px; }
+}
+
+
+/**
+ * Clearfix
+ * -----------------------
+ *
+ **/
+.clearfix:after { content: "\0020"; display: block; visibility: hidden; height: 0px; clear: both; }

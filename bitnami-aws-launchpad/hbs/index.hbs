@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href='/main.css' rel='stylesheet' type='text/css'>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/dynamic.js"></script>
+
+  </head>
+  <body>
+    <div class="container clearfix">
+      <div class="full-width column header">
+      </div>
+      <div class="full-width column ui-page" data-page="introduction">
+        <div class="ui-btn-row">
+          <a class="ui-btn page" href="#">Verify your credentials</a>
+        </div>
+      </div>
+      <div class="full-width column ui-page" data-page="authentication">
+        <div class="ui-row-wrapper-table">
+          <div class="ui-input-wrapper-cell">
+            <input type="text" class="ui-input" id="access_key" placeholder="Access Key ID" />
+          </div>
+          <div class="ui-input-divider-cell"></div>
+          <div class="ui-input-wrapper-cell">
+            <input type="text" class="ui-input" id="secret_key" placeholder="Secret Access Key" />
+          </div>
+        </div>
+        <div class="ui-row-wrapper-table">
+          <div class="ui-input-wrapper-cell">
+            <select class="ui-input" id="region_id">
+              <option value="us-east-1" selected>us-east-1 (Northern Virginia)</option>
+              <option value="us-west-1">us-west-1 (Northern California)</option>
+              <option value="us-west-2">us-west-2 (Oregon)</option>
+              <option value="sa-east-1">sa-east-1 (Sao Paulo)</option>
+              <option value="eu-west-1">eu-west-1 (Ireland)</option>
+              <option value="ap-southeast-1">ap-southeast-1 (Singapore)</option>
+              <option value="ap-southeast-2">ap-southeast-2 (Sydney)</option>
+              <option value="ap-northeast-1">ap-northeast-1 (Tokyo)</option>
+            </select>
+          </div>
+        </div>
+        <div class="ui-btn-row">
+          <a class="ui-btn page" href="#">Find Available Bitnami AMIs</a>
+        </div>
+      </div>
+      <div class="full-width column ui-page" data-page="selection">
+        <div class="ui-row-wrapper-table">
+          <div class="ui-input-wrapper-cell">
+            <input type="text" class="ui-input" id="ami_name" placeholder="AMI Name" data-ami_id />
+          </div>
+          <div class="ui-input-divider-cell"></div>
+          <div class="ui-input-wrapper-cell small">
+            <span class="ui-information-span" id="amis_matching">Searching..</span>
+          </div>
+        </div>
+        <div class="ui-row-wrapper-table" id="ami_selector"></div>
+      </div>
+      <div class="full-width column ui-page" data-page="launch">
+        <div class="ui-row-wrapper-table">
+          <div class="ui-ami-wrapper-cell">
+            <span class="ui-information-span" id="launched_ami_name"></span>
+          </div>
+          <div class="ui-input-divider-cell"></div>
+          <div class="ui-ami-wrapper-cell">
+            <span class="ui-information-span" id="launched_key_name"></span>
+          </div>
+        </div>
+        <div class="ui-row-wrapper-table">
+          <div class="ui-input-wrapper-cell">
+            <textarea class="ui-textarea" id="launched_private_key"></textarea>
+          </div>
+        </div>
+        <div class="ui-row-wrapper-table">
+          <div class="ui-ami-wrapper-cell">
+            <span class="ui-information-span" id="launched_key_digest"></span>
+          </div>
+          <div class="ui-input-divider-cell"></div>
+          <div class="ui-ami-wrapper-cell">
+            <span class="ui-information-span" id="launched_state"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="/main.js"></script>
+  </body>
+</html>
