@@ -1,3 +1,4 @@
+Convert any string between any two given alphabets.
 ```
 # requires coffeescript
 $ make js
