@@ -1,0 +1,396 @@
+<html>
+    <head>
+        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" />
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highcharts/4.2.5/highcharts.js"></script>
+        <style>
+            body {
+                background: #e2e2e2;
+                margin: 0px;
+                font-family: "Montserrat", sans-serif;
+            }
+            nav, article > main, article> header, article > footer {
+                padding: 10px;
+                overflow: auto;
+            }
+
+            nav, section > article {
+                background: #ffffff;
+                border-bottom: 1px solid #dddddd;
+            }
+
+            section > article {
+                margin: 10px;
+            }
+
+            a.nav, span.nav {
+                display: inline-block;
+                text-decoration: none;
+                padding: 5px;
+            }
+
+            a.nav:hover {
+                color: #000000;
+            }
+
+            a.nav-primary {
+                color: #6b6b6b;
+            }
+
+            a.nav-secondary, span.nav-breadcrumb {
+                color: #a9a9a9;
+            }
+
+            a.nav-icon {
+                color: #000000;
+            }
+
+            div.pull-left {
+                float: left;
+                text-align: left;
+            }
+
+            div.pull-right {
+                float: right;
+                text-align: right;
+            }
+
+            .metric-medium > .pull-left {
+                font-size: 36px;
+            }
+
+            .metric-small > .pull-right {
+            }
+
+            footer.metric-small {
+                height: 16px;
+                font-size: 16px;
+                line-height: 16px;
+            }
+
+            main.metric-medium {
+                height: 75px;
+                overflow: visible;
+            }
+
+            main.metric-large {
+                height: 111px;
+                text-align: center;
+                font-size: 36px;
+                word-break: break-all;
+            }
+
+            main.metric-xlarge, main.metric-xlarge > figure {
+                height: 300px;
+            }
+
+            figure {
+                margin: 0px;
+            }
+
+            section {
+                float: left;
+            }
+
+            section.whole {
+                width: 100%;
+            }
+
+            section.half {
+                width: 50%
+            }
+
+            section.fourth {
+                width: 25%;
+            }
+
+            table {
+                width: 100%;
+            }
+
+            th {
+                text-align: left;
+            }
+
+            tr:nth-child(odd) {
+                background: #eaeaea;
+            }
+        </style>
+    </head>
+    <body>
+        <nav>
+            <div class="pull-left">
+                <a href="" class="nav nav-icon">
+                    <i class="fa fa-bars" aria-hidden="true"></i>
+                </a>
+                <a href="" class="nav nav-secondary">
+                    Dashboards
+                </a>
+                <a href="" class="nav nav-primary">
+                    User Activity
+                </a>
+            </div>
+            <div class="pull-right">
+                <a href="" class="nav nav-secondary">
+                    Live Support
+                </a>
+                <a href="" class="nav nav-secondary">
+                    User Guides
+                </a>
+                <a href="" class="nav nav-icon">
+                    <i class="fa fa-bell-o" aria-hidden="true"></i>
+                </a>
+                <a href="" class="nav nav-primary">
+                    John Hamill
+                    <i class="fa fa-sort-desc" aria-hidden="true"></i>
+                </a>
+            </div>
+        </nav>
+        <nav>
+            <div class="pull-left">
+                <a href="" class="nav nav-icon">
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                </a>
+                <span class="nav nav-breadcrumb">
+                    Customer Journey
+                </span>
+            </div>
+        </nav>
+        <main>
+            <section class="whole">
+                <article>
+                    <header>
+                        Customer Journey
+                    </header>
+                    <main class="metric-xlarge">
+                        <figure id="customer-journey-graph">
+                        </figure>
+                    </main>
+                </article>
+            </section>
+            <section class="fourth">
+                <article>
+                    <header>
+                        Lorem Metric
+                    </header>
+                    <main class="metric-large">
+                        250,000
+                    </main>
+                </article>
+            </section>
+            <section class="fourth">
+                <article>
+                    <header>
+                        Ipsum Metric
+                    </header>
+                    <main class="metric-medium">
+                        <div class="pull-left">
+                            2,500
+                        </div>
+                        <div class="pull-right">
+                            [graph]
+                        </div>
+                    </main>
+                    <footer class="metric-small">
+                        <div class="pull-left">
+                            7 Days
+                        </div>
+                        <div class="pull-right">
+                            +17%
+                        </div>
+                    </footer>
+                </article>
+            </section>
+            <section class="fourth">
+                <article>
+                    <header>Dolor Metric</header>
+                    <main class="metric-medium">
+                        <div class="pull-left">
+                            1,370
+                        </div>
+                        <div class="pull-right">
+                            [graph]
+                        </div>
+                    </main>
+                    <footer class="metric-small">
+                        <div class="pull-left">
+                            24 Hours
+                        </div>
+                        <div class="pull-right">
+                            +13%
+                        </div>
+                    </footer>
+                </article>
+            </section>
+            <section class="fourth">
+                <article>
+                    <header>Sit Ametric</header>
+                    <main class="metric-large">
+                        130,000
+                    </main>
+                </article>
+            </section>
+            <section class="half">
+                <article>
+                    <header>Lorem Metric</header>
+                    <main class="metric-xlarge">
+                        <figure id="some-other-chart">
+                        </figure>
+                    </main>
+                </article>
+            </section>
+            <section class="half">
+                <article>
+                    <header>Ipsum Metric</header>
+                    <main class="metric-xlarge">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Browser Name</th>
+                                    <th>Market Share</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Internet Explorer</td>
+                                    <td>56.33%</td>
+                                </tr>
+                                <tr>
+                                    <td>Chrome</td>
+                                    <td>24.03%</td>
+                                </tr>
+                                <tr>
+                                    <td>Firefox</td>
+                                    <td>10.38%</td>
+                                </tr>
+                                <tr>
+                                    <td>Safari</td>
+                                    <td>4.77%</td>
+                                </tr>
+                                <tr>
+                                    <td>Opera</td>
+                                    <td>0.91%</td>
+                                </tr>
+                                <tr>
+                                    <td>Other</td>
+                                    <td>0.2%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </main>
+                </article>
+            </section>
+        </main>
+        <script>
+            $('figure#customer-journey-graph').highcharts({
+                chart: {
+                    type: "column"
+                },
+                title: {
+                    text: ""
+                },
+                subtitle: {
+                    text: ""
+                },
+                xAxis: {
+                    type: 'category'
+                },
+                yAxis: {
+                    title: {
+                        text: ""
+                    }
+
+                },
+                legend: {
+                    enabled: false
+                },
+                plotOptions: {
+                    series: {
+                        borderWidth: 0,
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.y}'
+                        }
+                    }
+                },
+
+                tooltip: {
+                    headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                    pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+                },
+
+                series: [{
+                    name: 'Steps',
+                    colorByPoint: true,
+                    data: [{
+                        name: 'Registered',
+                        y: 55
+                    }, {
+                        name: 'Created Project',
+                        y: 33
+                    }, {
+                        name: 'Live Data Received',
+                        y: 4
+                    }, {
+                        name: 'Action',
+                        y: 3
+                    }]
+                }]
+            });
+
+
+
+        // Build the chart
+        $('figure#some-other-chart').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            title: {
+                text: ""
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true
+                }
+            },
+            series: [{
+                name: 'Brands',
+                colorByPoint: true,
+                data: [{
+                    name: 'Internet Explorer',
+                    y: 56.33
+                }, {
+                    name: 'Chrome',
+                    y: 24.03,
+                    sliced: true,
+                    selected: true
+                }, {
+                    name: 'Firefox',
+                    y: 10.38
+                }, {
+                    name: 'Safari',
+                    y: 4.77
+                }, {
+                    name: 'Opera',
+                    y: 0.91
+                }, {
+                    name: 'Other',
+                    y: 0.2
+                }]
+            }]
+        });
+        </script>
+    </body>
+</html>
