@@ -2,6 +2,7 @@
 python -m SimpleHTTPServer 3000
 ```
 
+### Average
 1. The time complexity of the moving average function is O(n) for `get_moving_average` due to use of the sum function as well as the list slice.
 2. The time complexity could be improved to O(1) if the n parameter was not required as we could then just collect the sum by addition in the `add_vaue` function.
 
