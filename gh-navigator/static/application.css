@@ -1,0 +1,63 @@
+body {
+    margin: 0px;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+body > header, nav, main {
+    margin: 0px auto;
+    max-width: 768px;
+    box-sizing: border-box;
+    padding: 12px;
+}
+
+body > header > article {
+    padding: 15px;
+    color: #a94442;
+    background-color: #f2dede;
+    border: 1px solid #ebccd1;
+    border-radius: 4px;
+}
+
+main table {
+    width: 100%;
+}
+
+nav input {
+    width: 100%;
+    font-size: 1.5em;
+    box-sizing: border-box;
+    padding: 7px 14px;
+    border: 3px solid #afafaf;
+}
+
+nav input:focus {
+    outline: none;
+}
+
+summary, main header, summary a {
+    font-size: 13px;
+    font-family: 'Source Code Pro', Courier, monospace;
+    color: #6f6f6f;
+}
+
+summary a:hover {
+    color: #000000;
+}
+
+main header {
+    border-bottom: 1px solid #afafaf;
+}
+
+main article {
+    font-size: 1.2em;
+}
+
+tr > td {
+    padding: 12px 0px;
+}
+
+main td:first-child a img {
+    border-radius: 50%;
+    width: 64px;
+    height: 64px;
+}

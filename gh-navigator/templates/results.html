@@ -1,0 +1,19 @@
+<header>showing results for {{term}}</header>
+<table>
+    <tbody>
+    {% for result in results %}
+        <tr>
+            <td>
+                <a href="{{result.get("owner").get("url")}}"><img src="{{result.get("owner").get("avatar_url")}}"/></a>
+            </td>
+            <td>
+                <article data-owner="{{result.get("owner").get("login")}}" data-name="{{result.get("name")}}">
+                    {{result.get("owner").get("login")}} / <a href="{{result.get("html_url")}}">{{result.get("name")}}</a>
+                    created <span title="{{result.get("created_at")}}">{{result.get("created_at")|format_date}}</span>
+                </article>
+                <summary></summary>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
