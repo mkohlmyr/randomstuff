@@ -4,7 +4,7 @@
     {% for result in results %}
         <tr>
             <td>
-                <a href="{{result.get("owner").get("url")}}"><img src="{{result.get("owner").get("avatar_url")}}"/></a>
+                <a href="{{result.get("owner").get("html_url")}}"><img src="{{result.get("owner").get("avatar_url")}}"/></a>
             </td>
             <td>
                 <article data-owner="{{result.get("owner").get("login")}}" data-name="{{result.get("name")}}">
