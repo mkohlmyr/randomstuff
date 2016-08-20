@@ -1,14 +1,4 @@
 #!/usr/bin/env python
-"""
-To execute the python code, either:
- 1. Make bin.py executable with chmod and run ./bin.py 16:10
- 2. Run python bin.py 16:10
-
-Approach:
-If we can fix the the wildcard hours and minutes then we can
-simply do a time comparison to determine if the command should
-execute today or tomorrow.
-"""
 
 import sys
 
@@ -40,8 +30,10 @@ def timefmt(time):
 if __name__ == "__main__":
     hh, mm = sys.argv[1].split(":")
     now = time(int(hh), int(mm))
-    with open("config") as config:
-        for line in config:
-            entry = Entry(*line.split())
-            runtime = calculate_runtime(entry, now)
-            print "%s %s - %s" % (timefmt(runtime), "tomorrow" if tomorrow(runtime, now) else "today", entry.cmd)
+    while True:
+        line = line = sys.stdin.readline().rstrip("\r\n")
+        if not len(line):
+            break
+        entry = Entry(*line.split())
+        runtime = calculate_runtime(entry, now)
+        print "%s %s - %s" % (timefmt(runtime), "tomorrow" if tomorrow(runtime, now) else "today", entry.cmd)
