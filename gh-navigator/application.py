@@ -22,7 +22,7 @@ def index():
 def search():
     term = request.args.get("search_term")
     url = "https://api.github.com/search/repositories?"
-    url = url + urllib.urlencode({"q": term})
+    url = url + urllib.urlencode({"q": term.encode("utf-8")})
     try:
         req = urllib2.Request(url)
         res = json.loads(urllib2.urlopen(req).read())
