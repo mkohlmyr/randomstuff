@@ -1,0 +1,78 @@
+{% extends "index.html" %}
+
+{% block content %}
+    <h1>{{ chat.requested_by }}</h1>
+    <p>with <a href="/agents/{{ chat.agent.id }}">{{ chat.agent.id }}</a> started at {{ chat.created_at|pretty_timestamp }} and lasted {{ chat.chat_duration }} seconds after waiting {{ chat.chat_waittime }} seconds</p>
+    {% if chat.k_polarity %}
+        <h2>Customer Sentiment Polarity Graph</h2>
+        <p>Agent messages are marked as vertical lines (only shows time where customer was still active)</p>
+        <div class="demo-container">
+            <div id="placeholder" class="demo-placeholder"></div>
+        </div>
+    {% else %}
+        <p>Not enough messages for polarity graph</p>
+    {% endif %}
+    <table class="table">
+        <thead>
+            <tr>
+                <td>Alias</td>
+                <td>Message</td>
+                <td>Timestamp</td>
+            </tr>
+        <thead>
+        <tbody>
+            {% for record in chat.transcript %}
+            <tr>
+                <td>{{ record.get("alias") }}</td>
+                <td>{{ record.get("message") }}</td>
+                <td title="{{ record.get("date") }}" data-index="{{ loop.index }}">{{ record.get("date")|pretty_timestamp }}</td>
+            </tr>
+            {% endfor %}
+        <thead>
+    </table>
+{% endblock %}
+{% block scripts %}
+    {% if chat.k_polarity %}
+	<script type="text/javascript">
+
+	$(function() {
+        const annotations = [
+
+        ];
+        const markings = [
+            {color: "#aaffaa", yaxis: {from: 0}},
+            {color: "#ffaaaa", yaxis: {to: 0}}
+        ];
+        const datapoints = [];
+        {% for record in chat.transcript %}
+            {% if record.get("message") %}
+                {% if not "id" in record %}
+                    datapoints.push([{{ loop.index }}, {{ record["polarity"] }}]);
+                {% else %}
+                    markings.push({color: "#000000", lineWidth: 1, xaxis: {from: {{ loop.index }}, to: {{ loop.index }}}, message: "{{ record["message"] }}"});
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+
+        const data = [{data: datapoints, color: "#333333"}];
+
+		var placeholder = $("#placeholder");
+
+		var plot = $.plot(placeholder, data, {
+			yaxis: { min: -1, max: 1 },
+			grid: { markings: markings },
+            series: {points: {show: true}, lines: {show: true}}
+		});
+
+        for (let i = 2; i < markings.length; i++) {
+            if (markings[i].xaxis.from >= datapoints[datapoints.length - 1][0]) {
+                continue;
+            }
+            const o = plot.pointOffset({x: markings[i].xaxis.from, y: 0});
+            placeholder.append("<div class=\"annotation\" style=\"left: " + (o.left + 4) + "px;top: " + o.top + "px;\"><i class=\"fa fa-comment-o\" aria-hidden=\"true\" title=\"" + markings[i].message + "\"></i></div>")
+        }
+	});
+
+	</script>
+    {% endif %}
+{% endblock %}
