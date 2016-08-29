@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row" id="new-person-container">
+</div>
+
+<div class="row">
+    <div class="col-xs-12" id="person-list-column">
+
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts%}
+<script type="text/javascript">
+    console.log(StandardForm);
+    ReactDOM.render(
+        React.createElement(
+            StandardForm,
+            {
+                formid: "new-person-form",
+                button: "submit",
+                address: {
+                    city: "",
+                    postcode: "",
+                    street: "",
+                    building: "",
+                    dwelling: ""
+                },
+                misc: {
+                    tel: "",
+                    email: ""
+                }
+            }
+        ),
+        document.getElementById("new-person-container")
+    );
+
+    $("#new-person-container").on("submit", "#new-person-form", function (event) {
+        event.preventDefault();
+        const person = Person.fromFormData(this);
+        db.person.add(person).then(function (pid) {
+            window.location.href = `/people/${pid}`;
+        }).catch(function (e) {
+            ReactDOM.render(React.createElement(Alert, { level: "danger", message: e.message }), document.getElementById("notification-area"));
+        });
+        return false;
+    });
+
+    ReactDOM.render(
+        React.createElement(
+            StandardTable,
+            {
+                collection: "person",
+                klass: Person
+            }
+        ),
+        document.getElementById("person-list-column")
+    );
+</script>
+{% endblock %}

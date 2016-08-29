@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<div class="row" id="update-person-container">
+</div>
+
+<div class="row" id="associate-person-container">
+    <div class="col-xs-12" id="person-list-column">
+        <div class="input-group">
+            <span class="input-group-addon">associate with organisation</span>
+            <select class="form-control" id="associate-input">
+            </select>
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button" id="associate-button">submit</button>
+            </span>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12" id="organisation-list-column">
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <button type="button" class="btn btn-danger" id="delete">Delete Person</button>
+    </div>
+</div>
+
+<script>
+    const pid = {{ pid }};
+
+    db.person.get(pid).then(function (person) {
+        ReactDOM.render(
+            React.createElement(
+                StandardForm, {
+                    formid: "update-person-form",
+                    id: person.id,
+                    name: person.name,
+                    button: "update",
+                    address: person.address,
+                    misc: {
+                        tel: person.tel,
+                        email: person.email
+                    }
+                }
+            ),
+            document.getElementById("update-person-container")
+        );
+    }).catch(function (e) {
+        ReactDOM.render(
+            React.createElement(Alert, {level: "danger", message: e.message}),
+            document.getElementById("notification-area")
+        );
+    });
+
+
+    $("#update-person-container").on("submit", "#update-person-form", function (event) {
+        event.preventDefault();
+        const person = Person.fromFormData(this);
+        db.person.update(person.id, person).then(function (res) {
+            if (!res) {
+                ReactDOM.render(React.createElement(Alert, {level: "danger", message: "No record with this primary key"}), document.getElementById("notification-area"));
+            } else {
+                ReactDOM.render(React.createElement(Alert, {level: "success", message: "Record updated successfully"}), document.getElementById("notification-area"));
+            }
+        }).catch(function (e) {
+            ReactDOM.render(React.createElement(Alert, {level: "danger", message: e.message}), document.getElementById("notification-area"));
+        });
+        return false;
+    });
+
+    db.organisation.each(function (org) {
+        jQuery("#associate-input").append(`<option value="${org.id}">${org.name}</option>`)
+    }).catch(function (e) {
+        ReactDOM.render(React.createElement(Alert, {level: "danger", message: e.message}), document.getElementById("notification-area"));
+    });
+
+    jQuery("#associate-button").click(function () {
+        const oid = parseInt(jQuery("#associate-input").val(), 10);
+        const assoc = new Association(pid, oid);
+        db.association.put(assoc).then(function () {
+            ReactDOM.render(React.createElement(Alert, {level: "success", message: "Record updated successfully"}), document.getElementById("notification-area"));
+            window.setTimeout(function () {
+                window.location.href = `/organisations/${oid}`;
+            }, 500);
+        }).catch(function (e) {
+            ReactDOM.render(React.createElement(Alert, {level: "danger", message: e.message}), document.getElementById("notification-area"));
+        });
+    });
+
+
+    db.association.filter(function (assoc) {
+        return assoc.pid === pid;
+    }).toArray().then(function (assocs) {
+        const oids = assocs.map(function (assoc) {
+            return assoc.oid;
+        });
+        db.organisation.where("id").anyOf(oids).toArray().then(function (organisations) {
+            ReactDOM.render(
+                React.createElement(
+                    StandardTable,
+                    {
+                        records: organisations,
+                        klass: Organisation
+                    }
+                ),
+                document.getElementById("organisation-list-column")
+            );
+        }).catch(function (e) {
+            ReactDOM.render(React.createElement(Alert, {level: "danger", message: e.message}), document.getElementById("notification-area"));
+        });
+    }).catch(function (e) {
+        ReactDOM.render(React.createElement(Alert, {level: "danger", message: e.message}), document.getElementById("notification-area"));
+    });
+
+
+    jQuery("#delete").click(function () {
+        db.person.delete(pid).then(function () {
+            window.location.href = "/people/";
+        }).catch(function (e) {
+            ReactDOM.render(React.createElement(Alert, {level: "danger", message: e.message}), document.getElementById("notification-area"));
+        });
+    });
+</script>
+{% endblock %}

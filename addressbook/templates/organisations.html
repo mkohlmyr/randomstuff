@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row" id="new-organisation-container">
+</div>
+<div class="row">
+    <div class="col-xs-12" id="organisation-list-column">
+
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript">
+    ReactDOM.render(
+        React.createElement(
+            StandardForm,
+            {
+                formid: "new-organisation-form",
+                button: "submit",
+                address: {
+                    city: "",
+                    postcode: "",
+                    street: "",
+                    building: "",
+                    dwelling: ""
+                },
+                misc: {
+                    tel: "",
+                    url: ""
+                }
+            }
+        ),
+        document.getElementById("new-organisation-container")
+    );
+
+    ReactDOM.render(
+        React.createElement(
+            StandardTable,
+            {
+                collection: "organisation",
+                klass: Organisation
+            }
+        ),
+        document.getElementById("organisation-list-column")
+    );
+    $("#new-organisation-container").on("submit", "#new-organisation-form", function (event) {
+        event.preventDefault();
+        const org = Organisation.fromFormData(this);
+        db.organisation.add(org).then(function (oid) {
+            window.location.href = `/organisations/${oid}`;
+        }).catch(function (e) {
+            ReactDOM.render(React.createElement(Alert, { level: "danger", message: e.message }), document.getElementById("notification-area"));
+        });
+        return false;
+    });
+</script>
+{% endblock %}

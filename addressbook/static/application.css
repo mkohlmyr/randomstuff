@@ -1,0 +1,11 @@
+.input-group-addon, form button {
+    min-width: 100px;
+}
+
+div.row:not(:first-child) {
+    margin-top: 64px;
+}
+
+.initially-hidden {
+    display: none;
+}
