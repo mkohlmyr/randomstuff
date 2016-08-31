@@ -294,7 +294,7 @@ class Timeline extends React.Component {
 }
 
 function handle_dataset_reload(evt) {
-    fetch("/chatdata.json").then(function (res) {
+    fetch("chatdata.json").then(function (res) {
         const contentType = res.headers.get("content-type");
         if (contentType && contentType.indexOf("application/json") !== -1) {
             return res.json().then(function (records) {
