@@ -37,7 +37,6 @@ const initialState = {
 };
 
 const ACTION_TYPES = {
-    ADD_TIMELINE_ITEM: "ADD_TIMELINE_ITEM",
     SET_TIMELINE_ITEMS: "SET_TIMELINE_ITEMS",
     INCR_PAGINATION: "INCR_PAGINATION",
     DECR_PAGINATION: "DECR_PAGINATION",
@@ -48,10 +47,6 @@ const PAGINATION_STEP = 25;
 
 const store = Redux.createStore(function (state=initialState, action) {
     switch (action.type) {
-        case ACTION_TYPES.ADD_TIMELINE_ITEM:
-            return Object.assign({}, state, {
-                timeline: state.timeline.concat(action.data)
-            });
         case ACTION_TYPES.SET_TIMELINE_ITEMS:
             return Object.assign({}, state, {
                 timeline: action.data
@@ -71,12 +66,26 @@ const store = Redux.createStore(function (state=initialState, action) {
             return Object.assign({}, state, {
                 selected: action.data
             });
-        case ACTION_TYPES.LOADED_NEW_MESSAGES:
-            return Object.assign({}, state, {
-                messages: action.data
-            });
     } return Object.assign({}, state);
 });
+
+class Status extends React.Component {
+    render() {
+        return React.createElement(
+            "div",
+            {className: "progress"},
+            React.createElement(
+                "div",
+                {className: "progress-bar", style:{width: `${this.props.percentage * 100}%`}},
+                ""
+            )
+        )
+    }
+
+    static update(percentage) {
+        ReactDOM.render(React.createElement(Status, {percentage: percentage}), document.getElementById("progress-column"));
+    }
+}
 
 class Alert extends React.Component {
     render() {
@@ -191,7 +200,18 @@ class ItemMessages extends React.Component {
                 return React.createElement(
                     "p",
                     {className: `cb cb-${side}`, key: `cb-${index}`},
-                    message.message
+                    [
+                        React.createElement(
+                            "h2",
+                            null,
+                            message.alias
+                        ),
+                        React.createElement(
+                            "span",
+                            null,
+                            message.message
+                        )
+                    ]
                 );
             })
         );
@@ -294,47 +314,69 @@ class Timeline extends React.Component {
 }
 
 function handle_dataset_reload(evt) {
-    fetch("chatdata.json").then(function (res) {
-        const contentType = res.headers.get("content-type");
-        if (contentType && contentType.indexOf("application/json") !== -1) {
-            return res.json().then(function (records) {
-                Alert.info("Started processing dataset, this may take quit a while...");
-                const message_promises = [];
-                let resolved = 0;
-                return db.chat.bulkPut(
-                    records.filter(function(record) {
-                        return record.type === "chat";
-                    }).map(function (record) {
-                        const agent_id = record.transcript.reduce(function (agent_id, msg) {
-                            message_promises.push(
-                                db.message.put(new Message(record.id, msg.date, msg.alias, msg.message, msg.id)).then(function () {
-                                    resolved++;
-                                }).catch(function(e) {
-                                    Alert.danger(e.message);
-                                })
-                            );
-                            if (msg.id) {
-                                return msg.id;
-                            }
-                            return agent_id;
-                        }, undefined);
-                        return new Chat(record.id, record.requested_by, record.created_at, record.initial_message, agent_id);
+
+    /*
+
+  // clear all the data out of the object store
+  var objectStoreRequest = objectStore.clear();
+
+  objectStoreRequest.onsuccess = function(event) {
+    // report the success of our clear operation
+    note.innerHTML += '<li>Data cleared.</li>';
+  };
+    */
+
+    db.chat.clear().then(function () {
+        return db.message.clear()
+    }).then(function () {
+
+            fetch("chatdata.json").then(function (res) {
+                const contentType = res.headers.get("content-type");
+                if (contentType && contentType.indexOf("application/json") !== -1) {
+                    return res.json().then(function (records) {
+                        Alert.info("Started processing dataset, this may take quit a while...");
+                        const message_promises = [];
+                        let resolved = 0;
+                        return db.chat.bulkPut(
+                            records.filter(function(record) {
+                                return record.type === "chat";
+                            }).map(function (record) {
+                                const agent_id = record.transcript.reduce(function (agent_id, msg) {
+                                    message_promises.push(
+                                        db.message.put(new Message(record.id, msg.date, msg.alias, msg.message, msg.id)).then(function () {
+                                            resolved++;
+                                        }).catch(function(e) {
+                                            Alert.danger(e.message);
+                                        })
+                                    );
+                                    if (msg.id) {
+                                        return msg.id;
+                                    }
+                                    return agent_id;
+                                }, undefined);
+                                return new Chat(record.id, record.requested_by, record.created_at, record.initial_message, agent_id);
+                            })
+                        ).then(function () {
+                            Status.update(resolved/message_promises.length);
+                            Alert.info(`Now processing transcripts (${resolved} / ${message_promises.length}) you can now view the timeline.`);
+                            let iv = window.setInterval(function () {
+                                Status.update(resolved/message_promises.length);
+                                Alert.info(`Now processing transcripts (${resolved} / ${message_promises.length}) you can now view the timeline.`);
+                            }, 1000);
+                            Dexie.Promise.all(message_promises).then(function () {
+                                window.clearInterval(iv);
+                                Alert.success("Finished importing dataset to database!");
+                            }).catch(function (e) {
+                                Alert.danger(e.message);
+                            });
+                        });
                     })
-                ).then(function () {
-                    Alert.info(`Now processing transcripts (${resolved} / ${message_promises.length}) you can now view the timeline.`);
-                    let iv = window.setInterval(function () {
-                        Alert.info(`Now processing transcripts (${resolved} / ${message_promises.length}) you can now view the timeline.`);
-                    }, 1000);
-                    Dexie.Promise.all(message_promises).then(function () {
-                        window.clearInterval(iv);
-                        Alert.success("Finished importing dataset to database!");
-                    }).catch(function (e) {
-                        Alert.danger(e.message);
-                    });
-                });
-            })
-        } throw new Error(`${res.status} ${res.statusText}`);
-    }).catch(function(e) {
+                } throw new Error(`${res.status} ${res.statusText}`);
+            }).catch(function(e) {
+                Alert.danger(e.message);
+            });
+    }).catch(function (e) {
         Alert.danger(e.message);
     });
+
 }
