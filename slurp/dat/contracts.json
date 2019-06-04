@@ -1,0 +1,54 @@
+[
+  {
+    "consignor": "DSV Road a/S",
+    "consignee": "Skanol AB"
+  },
+  {
+    "consignor": "AB Skandia Transport",
+    "consignee": "Raiffeisen HaGe Nord"
+  },
+  {
+    "consignor": "Power Oil Rostock GmbH",
+    "consignee": "Brenntag Nordic AB"
+  },
+  {
+    "consignor": "H J Hansen Sverige AB",
+    "consignee": "Raiffeisen HaGe Nord"
+  },
+  {
+    "consignor": "H.J. Hansen Prøvestenen A/S",
+    "consignee": "Preem"
+  },
+  {
+    "consignor": "BG Beton A/S København",
+    "consignee": "Power Oil Rostock GmbH"
+  },
+  {
+    "consignor": "AB Skandia Transport",
+    "consignee": "Raiffeisen HaGe Nord"
+  },
+  {
+    "consignor": "H J Hansen Sverige AB",
+    "consignee": "Raiffeisen HaGe Nord"
+  },
+  {
+    "consignor": "Power Oil Rostock GmbH",
+    "consignee": "Brenntag Nordic AB"
+  },
+  {
+    "consignor": "Brenntag Nordic AB",
+    "consignee": "Svenska Statoil AB"
+  },
+  {
+    "consignor": "AB Skandia Transport",
+    "consignee": "Raiffeisen HaGe Nord"
+  },
+  {
+    "consignor": "Power Oil Rostock GmbH",
+    "consignee": "Svenska Statoil AB"
+  },
+  {
+    "consignor": "Raiffeisen HaGe Nord",
+    "consignee": "Preem"
+  }
+]

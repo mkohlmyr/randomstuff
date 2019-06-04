@@ -1,0 +1,13 @@
+{
+  "name": "slurp",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "ingress": "env $(sed 's:#.*$::g' .env | xargs) node --no-warnings --experimental-modules bin/ingress.mjs",
+    "streamer": "env $(sed 's:#.*$::g' .env | xargs) node --no-warnings --experimental-modules bin/streamer.mjs",
+    "freetrade": "node --no-warnings --experimental-modules freetrade/index.mjs",
+    "binse": "node --no-warnings --experimental-modules binse/test.mjs"
+  },
+  "author": "Mikael Kohlmyr <mkohlmyr@protonmail.com>",
+  "license": "MIT"
+}

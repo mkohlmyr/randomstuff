@@ -1,0 +1,17 @@
+{
+  "name": "custard",
+  "version": "1.0.0",
+  "scripts": {
+    "parse": "node --no-warnings --experimental-modules bin/index.mjs",
+    "test": "node ./node_modules/.bin/mocha --no-warnings -- --recursive 'tests/*.spec.mjs' --require @std/esm"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@std/esm": "^0.26.0",
+    "chai": "^4.2.0",
+    "mocha": "^6.0.2"
+  },
+  "@std/esm": {
+    "cjs": true
+  }
+}

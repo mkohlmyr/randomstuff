@@ -1,0 +1,54 @@
+[
+    {
+        "id": 1,
+        "name": "Goteborg",
+        "companies": [
+            "Skanol AB",
+            "AB Skandia Transport",
+            "Preem"
+        ],
+        "lat": 57.691288,
+        "lon": 11.879870
+    },
+    {
+        "id": 2,
+        "name": "Kopenhavn",
+        "companies": [
+            "SuperAsfalt A/S",
+            "BG Beton A/S København",
+            "H.J. Hansen Prøvestenen A/S"
+        ],
+        "lat": 55.678038,
+        "lon": 12.642146
+    },
+    {
+        "id": 3,
+        "name": "Malmo",
+        "companies": [
+            "Svenska Statoil AB",
+            "H J Hansen Sverige AB",
+            "Brenntag Nordic AB"
+        ],
+        "lat": 55.633909,
+        "lon": 13.026725
+    },
+    {
+        "id": 4,
+        "name": "Rostock",
+        "companies": [
+            "Power Oil Rostock GmbH",
+            "Raiffeisen HaGe Nord"
+        ],
+        "lat": 54.154215,
+        "lon": 12.120981
+    },
+    {
+        "id": 5,
+        "name": "Fredrikshavn",
+        "companies": [
+            "DSV Road a/S"
+        ],
+        "lat": 57.436453,
+        "lon": 10.549905
+    }
+]

@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "ticker": "AMZN",
+    "initialPrice": 1795
+  },
+  {
+    "id": 2,
+    "ticker": "GOOG",
+    "initialPrice": 1200
+  },
+  {
+    "id": 3,
+    "ticker": "MSFT",
+    "initialPrice": 115
+  }
+]

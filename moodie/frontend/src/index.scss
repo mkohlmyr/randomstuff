@@ -1,0 +1,140 @@
+body {
+  margin: 0px;
+  padding: 16px;
+  background: #fffff4;
+  font-family: 'Nunito', sans-serif;
+  font-weight: bold;
+}
+
+.feeling {
+  &__container {
+    width: 100%;
+  }
+
+  &__section {
+    margin: auto;
+    width: 480px;
+    margin-top: 32px;
+      
+
+    textarea {
+      height: 200px;
+      width: 480px;
+      font-size: 1.5em;
+      padding: 8px;
+      box-sizing: border-box;
+    }
+  }
+  
+  &__button {
+    display: block;
+    padding: 32px;
+    background: #ffffff;
+    color: #5c5c5c;
+    text-decoration: none;
+    text-align: center;
+    border: 4px solid #f5f4f0;
+
+    &:hover {
+      color: #383838;
+    }
+  }
+  
+
+  &__grid {
+    display: grid;
+    padding: 4px;
+    background: #f5f4f0;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-gap: 4px;
+  }
+
+  &__rect {
+    display: block;
+    padding: 32px;
+    background: #ffffff;
+    color: #5c5c5c;
+    text-decoration: none;
+    text-align: center;
+
+    &:hover {
+      color: #383838;
+    }
+
+    &--active {
+      background: rgb(255, 238, 0);
+    }
+  }
+}
+
+.history {
+  &__grid {
+    display: grid;
+    padding: 4px;
+    background: #f5f4f0;
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    grid-gap: 4px;
+  }
+
+  &__rect {
+    padding: 32px;
+    background: #ffffff;
+    color: #5c5c5c;
+    
+  }
+
+  &__badge {
+    background: #f5f4f0;
+    padding: 2px 8px;
+    margin-left: 6px;
+    border-radius: 5px;
+  }
+}
+
+.mood {
+  &__container {
+    width: 100%;
+  }
+
+  &__section {
+    margin: auto;
+    width: 480px;
+  }
+
+  &__slider {
+    background: #f5f4f0;
+    width: 100%;
+    height: 24px;
+    margin: 0px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: none;
+    
+
+    &::-webkit-slider-thumb {
+      background: #00f0f0;
+      border-radius: 50%; 
+      width: 32px;
+      height: 32px;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      cursor: pointer;
+    }
+  }
+
+  &__button {
+    display: block;
+    padding: 32px;
+    background: #ffffff;
+    color: #5c5c5c;
+    text-decoration: none;
+    text-align: center;
+    border: 4px solid #f5f4f0;
+
+    &:hover {
+      color: #383838;
+    }
+  }
+}
