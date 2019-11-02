@@ -30,7 +30,7 @@
     "gulp-less":  "1.2.1",
     "gulp-uglify":  "0.2.1",
     "gulp-if": "0.0.5",
-    "handlebars":  "2.0.x",
+    "handlebars":  "4.5.x",
     "ws": "0.4.31",
     "request": "2.34.0",
     "portfinder": "0.2.1",
