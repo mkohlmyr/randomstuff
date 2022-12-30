@@ -9,7 +9,7 @@
   "devDependencies": {
     "@std/esm": "^0.26.0",
     "chai": "^4.2.0",
-    "mocha": "^6.0.2"
+    "mocha": "^10.2.0"
   },
   "@std/esm": {
     "cjs": true
