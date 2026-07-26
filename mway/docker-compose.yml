@@ -1,0 +1,37 @@
+services:
+  database:
+    image: motorway/database
+    build: ./database
+    networks:
+      - default
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=motorway
+    ports:
+      - 5432:5432
+  api:
+    image: motorway/api
+    depends_on:
+      - database
+    build: ./api
+    ports:
+      - 8080:8080
+    networks:
+      - default
+    environment:
+      - POSTGRES_HOST=database
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=motorway
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 9090:8080
+    networks:
+      - default
+networks:
+  default:
+    driver: bridge

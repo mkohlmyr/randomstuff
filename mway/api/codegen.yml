@@ -1,0 +1,6 @@
+schema: resources/schema.graphql
+generates:
+  src/schema.ts:
+    plugins:
+      - typescript
+      - typescript-resolvers

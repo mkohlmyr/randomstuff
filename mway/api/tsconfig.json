@@ -1,0 +1,14 @@
+{
+    "extends": "@tsconfig/node18/tsconfig.json",
+    "compilerOptions": {
+      "outDir": "dist",
+      "rootDir": "src",
+      "noImplicitReturns": true,
+      "noUnusedParameters": true,
+      "noUnusedLocals": true,
+      "types": [
+        "jest"
+      ]
+    },
+    "exclude": ["jest.config.ts"]
+  }
